@@ -2,7 +2,7 @@
 
 // MongoDB config
 const mongojs = require('mongojs');
-const connectionString = 'mongodb://<dbuser>:<dbpassword>@ds135800.mlab.com:35800/infinote-db';
+const connectionString = 'mongodb://Admin:secretPassword@ds135800.mlab.com:35800/infinote-db';
 const collections = ['users'];
 
 const db = mongojs(connectionString, collections);
