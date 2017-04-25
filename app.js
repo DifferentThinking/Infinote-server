@@ -36,9 +36,9 @@ apiRouter
 					if (err) {
 						return res.status(404).json({"error": "DB error"});
 					}
-					return res.json({
+					return res.json({ result: {
 						username: user.username
-					});
+					}});
 				})
 			})
 		}
@@ -55,9 +55,9 @@ apiRouter
 				return res.status(404).json({ "error": "The username or password doesn't match" });
 			}
 			
-			res.json({
+			res.json({ result: {
 				username: user.username
-			});
+			}});
 		});
 	})
 	.get('/users', function (req, res, next) {
