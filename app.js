@@ -31,7 +31,6 @@ apiRouter
 					return res.status(404).json({"error": "Please choose another username. This username is already in use!"});
 				}
 
-				user.friends = ["no friends"];
 				db['users'].save(user, function (err, user) {
 					if (err) {
 						return res.status(404).json({"error": "DB error"});
@@ -57,6 +56,22 @@ apiRouter
 			
 			res.json({ result: {
 				username: user.username
+			}});
+		});
+	})
+	.post('/users/:username/notes', function(req, res, next) {
+		// if (!req.body) {
+		// 	return res.status(404).json({ "error": "You must send the username and the password" });
+		// }
+		let note = req.body;
+
+		db['note'].save(note, function(err, noteInDb) {
+			if (err) {
+				return res.status(404).json({ "error": "DB Error"});
+			}
+			
+			return res.json({ "result": {
+				"status": "OK"
 			}});
 		});
 	})
