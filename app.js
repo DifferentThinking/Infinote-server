@@ -60,9 +60,9 @@ apiRouter
 		});
 	})
 	.post('/users/:username/notes', function(req, res, next) {
-		// if (!req.body) {
-		// 	return res.status(404).json({ "error": "You must send the username and the password" });
-		// }
+		if (!req.body) {
+			return res.status(404).json({ "error": "You must send the username and the password" });
+		}
 		let note = req.body;
 
 		db['note'].save(note, function(err, noteInDb) {
