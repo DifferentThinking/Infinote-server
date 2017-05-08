@@ -83,6 +83,15 @@ apiRouter
 			return res.json(users);
 		})
 	})
+	.get('/users/:username/notes'), function(req, res, next) {
+		let username = req.params.username;
+
+		db['notes'].find( { username:  username }, function(err, notes) {
+			if (err) {
+				return res.status(404).json({ "error": "DB Error"});
+			}
+		});
+	}
 app.use('/api', apiRouter);
 
 const port = process.env.PORT || 3000;
