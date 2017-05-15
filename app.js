@@ -88,8 +88,8 @@ apiRouter
 			}});
 		});
 	})
-	.post('users/notes/:id', function(req, res, next) {
-		let username = req.params.id;
+	.post('/users/notes/:id/delete', function(req, res, next) {
+		let id = req.params.id;
 
 		db['note'].remove({ _id: new ObjectId(id) }, function(err, deletedNote) {
 			if (err) {
