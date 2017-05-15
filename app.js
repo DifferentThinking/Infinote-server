@@ -109,10 +109,9 @@ apiRouter
 				return res.json({ 'error': 'DB Error'});
 			}
 
-			user.remove('passHash')
-			return res.json({ result: {
+			return res.json({ 'result': 
 				user
-			}});
+			});
 		})
 	});
 	
