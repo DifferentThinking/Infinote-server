@@ -75,6 +75,19 @@ apiRouter
 			}});
 		});
 	})
+	.post('/users/notes/delete', function(req, res, next) {
+		let id = req.body.id;
+
+		db['note'].remove({ _id: new ObjectId(id) }, function(err, deletedNote) {
+			if (err) {
+				return res.status(404).json({ "error": "Error in DB" });
+			}
+
+			return res.json({ "result": {
+				"status": "OK"
+			}});
+		})
+	})
 	.get('/users/:username/notes', function(req, res, next) {
 		let username = req.params.username;
 		
@@ -87,19 +100,6 @@ apiRouter
 				"notes": notes
 			}});
 		});
-	})
-	.post('/users/notes/:id/delete', function(req, res, next) {
-		let id = req.params.id;
-
-		db['note'].remove({ _id: new ObjectId(id) }, function(err, deletedNote) {
-			if (err) {
-				return res.status(404).json({ "error": "Error in DB" });
-			}
-
-			return res.json({ "result": {
-				"status": "OK"
-			}});
-		})
 	})
 	.get('/users', function (req, res, next) {
 		db['users'].find(function (err, users) {
