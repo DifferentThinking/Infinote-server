@@ -88,6 +88,19 @@ apiRouter
 			}});
 		});
 	})
+	.post('users/notes/:id', function(req, res, next) {
+		let username = req.params.id;
+
+		db['note'].remove({ _id: new ObjectId(id) }, function(err, deletedNote) {
+			if (err) {
+				return res.status(404).json({ "error": "Error in DB" });
+			}
+
+			return res.json({ "result": {
+				"status": "OK"
+			}});
+		})
+	})
 	.get('/users', function (req, res, next) {
 		db['users'].find(function (err, users) {
 			if (err) {
