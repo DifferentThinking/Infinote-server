@@ -109,9 +109,9 @@ apiRouter
 				return res.json({ 'error': 'DB Error'});
 			}
 
-			return res.json({ 'result': 
+			return res.json({ 'result': {
 				user
-			});
+			}});
 		})
 	});
 	
