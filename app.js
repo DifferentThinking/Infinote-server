@@ -104,17 +104,17 @@ apiRouter
 	.get('/users/:username', function (req, res, next) {
 		let username = req.params.username;
 
-		db['users'].find({ username: username }, function (err, user) {
+		db['users'].findOne({ username: username }, function (err, user) {
 			if (err) {
 				return res.json({ 'error': 'DB Error'});
 			}
 
 			return res.json({ 'result': {
-				_id: user._id,
-				username: user.username,
-				email: user.email,
-				firstname: user.firstname,
-				lastname: user.lastname
+				_id: user['_id'],
+				username: user['username'],
+				email: user['email'],
+				firstname: user['firstname'],
+				lastname: user['lastname']
 			}});
 		})
 	});
