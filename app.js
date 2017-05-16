@@ -110,7 +110,11 @@ apiRouter
 			}
 
 			return res.json({ 'result': {
-				user
+				_id: user._id,
+				username: user.username,
+				email: user.email,
+				firstname: user.firstname,
+				lastname: user.lastname
 			}});
 		})
 	});
