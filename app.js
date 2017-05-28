@@ -75,6 +75,22 @@ apiRouter
 			}});
 		});
 	})
+	.post('/notes/:id/update', function(req, res, next) {
+		let id = req.params.id;
+		let note = {};
+		note.picture = req.body.picture;
+		note.title = req.body.title;
+
+		db['note'].update({ _id: new ObjectId(id) }, note, { upsert: true }, function(err, resultNote) {
+			if (!resultNote) {
+				return res.status(401).json({"error": "DB: Note not found"});
+			}
+
+			return res.status(200).json({ 'result': {
+				'status': 'OK'
+			}});
+		});
+	})
 	.post('/users/notes/delete', function(req, res, next) {
 		let id = req.body.id;
 
@@ -87,22 +103,6 @@ apiRouter
 				'status': 'OK'
 			}});
 		})
-	})
-	.post('/notes/:id/update', function(req, res, next) {
-		let id = req.params.id;
-		let note = {};
-		note.picture = req.body.picutre;
-		note.title = req.body.title;
-
-		db['note'].update({ _id: new ObjectId(id) }, note, { upsert: true }, function(err, resultNote) {
-			if (!resultNote) {
-				return res.status(401).json({"error": "DB: Note not found"});
-			}
-
-			return res.status(200).json({ 'result': {
-				'status': 'OK'
-			}});
-		});
 	})
 	.get('/users/:username/notes', function(req, res, next) {
 		let username = req.params.username;
