@@ -80,6 +80,7 @@ apiRouter
 		let note = {};
 		note.picture = req.body.picture;
 		note.title = req.body.title;
+		note.username = req.body.username;
 
 		db['note'].update({ _id: new ObjectId(id) }, note, { upsert: true }, function(err, resultNote) {
 			if (!resultNote) {
