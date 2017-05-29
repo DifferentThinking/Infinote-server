@@ -106,7 +106,7 @@ apiRouter
 			}});
 		})
 	})
-	.post('users/:username/profile', function(req, res, next) {
+	.post('/users/:username/profile', function(req, res, next) {
 		let username = req.params.username;
 		let profilePicture = req.body.profile;
 
