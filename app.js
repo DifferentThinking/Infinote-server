@@ -155,7 +155,8 @@ apiRouter
 				username: user['username'],
 				email: user['email'],
 				firstname: user['firstname'],
-				lastname: user['lastname']
+				lastname: user['lastname'],
+				profile: user['profile']
 			}});
 		})
 	});
