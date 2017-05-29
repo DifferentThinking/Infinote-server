@@ -15,6 +15,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser({limit: '5mb'}));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const apiRouter = new express.Router();
