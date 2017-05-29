@@ -129,6 +129,28 @@ apiRouter
 			});
 		});
 	})
+	.post('/users/:username/password', function(req, res, next) {
+		let username = req.params.username;
+		let password = req.body.password;
+
+		db['users'].findOne({ username: username }, function(err, user) {
+			if (err) {
+				return res.status(404).json({ 'error': 'DB Error'});
+			}
+
+			let updatedUser = user;
+			updatedUser.password = password;
+			db['users'].update({ username: username }, updatedUser, { upsert: true }, function(err, resultUser) {
+				if (err) {
+					return res.status(404).json({ 'error': 'DB Error'});
+				}
+
+				return res.status(200).json({ 'result': {
+					'status': 'OK'
+				}});
+			});
+		});
+	})
 	.get('/users/:username/notes', function(req, res, next) {
 		let username = req.params.username;
 		
